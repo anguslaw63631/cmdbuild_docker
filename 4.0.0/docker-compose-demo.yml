@@ -1,0 +1,37 @@
+volumes:
+    cmdbuild-db:
+    cmdbuild-tomcat:
+
+services:
+    cmdbuild_db:
+        image: postgis/postgis:17-3.5-alpine
+        container_name: cmdbuild_db
+        volumes:
+            - cmdbuild-db:/var/lib/postgresql
+        environment:
+            - POSTGRES_USER=postgres
+            - POSTGRES_PASSWORD=postgres
+        restart: always
+
+    cmdbuild_app:
+        image: anguslaw63631/cmdbuild:4.0.0
+        container_name: cmdbuild_app
+        links:
+           - cmdbuild_db
+        depends_on:
+           - cmdbuild_db
+        ports:
+            - 8080:8080
+        restart: always  
+        volumes:
+            - cmdbuild-tomcat:/usr/local/tomcat
+        environment:
+            - POSTGRES_USER=postgres
+            - POSTGRES_PASS=postgres
+            - POSTGRES_PORT=5432
+            - POSTGRES_HOST=cmdbuild_db
+            - POSTGRES_DB=cmdbuild_3
+            - CMDBUILD_DUMP=demo
+            - JAVA_OPTS=-Xmx8192m -Xms2048m
+        mem_limit: 8192m
+        mem_reservation: 2048m
