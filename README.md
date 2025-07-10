@@ -11,3 +11,5 @@ docker-compose -f 4.0.0/docker-compose.yml up -d
 #with demo
 docker-compose -f 4.0.0/docker-compose-demo.yml up -d
 ```
+
+Link to CMDbuild - http://localhost:8080/cmdbuild/

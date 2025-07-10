@@ -14,6 +14,6 @@ docker-compose -f 4.0.0/docker-compose.yml up -d
 * @ 4.0.0/files/tomcat-users.xml
 
 #### Credentials and access to OM
-* **Link to CMDbuild** - http://localhost:8090/cmdbuild/ui/
+* **Link to CMDbuild** - http://localhost:8080/cmdbuild/
 * **username** - admin (default)
 * **password** - admin (default)
